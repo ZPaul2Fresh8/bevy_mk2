@@ -3,11 +3,6 @@ use bevy::render::view::window;
 use bevy::transform::commands;
 use bevy::window::PrimaryWindow;
 
-use bevy::prelude::*;
-use bevy::render::view::window;
-use bevy::transform::commands;
-use bevy::window::PrimaryWindow;
-
 fn main() {
     App::new()
     .add_plugins(DefaultPlugins)
