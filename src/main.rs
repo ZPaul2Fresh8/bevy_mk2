@@ -1,6 +1,5 @@
+mod mod_fighter;
 use bevy::prelude::*;
-//use bevy::render::view::window;
-//use bevy::transform::commands;
 use bevy::window::PrimaryWindow;
 
 fn main() {
@@ -8,7 +7,13 @@ fn main() {
     .add_plugins(DefaultPlugins)
     .add_startup_system(spawn_sprite)
     .add_startup_system(spawn_camera)
-    .run();
+    .add_system(looped)
+    .run();    
+}
+
+pub fn looped() {
+    // this will loop
+    mod_fighter::mod_fighter::StructFighter::walk_forward()
 }
 
 pub fn spawn_sprite(
@@ -25,7 +30,6 @@ pub fn spawn_sprite(
             texture: asset_server.load("gfx/II.png"),
             ..default()
             },
-            //Fighter {},
         )
     );
 }
@@ -39,31 +43,4 @@ pub fn spawn_camera(mut commands: Commands, window_query: Query<&Window, With<Pr
             ..default()
         }
     );
-}    
-
-/*
-    Fighter Struct - Will be relocated later. Just an example
- */
-#[derive(Component)]
-pub struct Fighter{
-    // basic info
-    name: String,
-    locked: bool,
-    
-    // bio
-    bio: String,
-    bio_image: Image,
-
-    // ending
-    ending1: String,
-    ending2: String,
-    ending1_image: Image,
-    ending2_image: Image,
-
-    // walk attributes
-    walk_vel_fwd: f32,
-    walk_vel_bwd: f32,
-    walk_ani_speed_fwd: f32,
-    walk_ani_speed_bwd: f32,
-
 }
