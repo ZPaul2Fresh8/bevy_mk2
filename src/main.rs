@@ -1,6 +1,6 @@
 use bevy::prelude::*;
-use bevy::render::view::window;
-use bevy::transform::commands;
+//use bevy::render::view::window;
+//use bevy::transform::commands;
 use bevy::window::PrimaryWindow;
 
 fn main() {
@@ -10,9 +10,6 @@ fn main() {
     .add_startup_system(spawn_camera)
     .run();
 }
-
-#[derive(Component)]
-pub struct Fighter{}
 
 pub fn spawn_sprite(
     mut commands: Commands,
@@ -28,7 +25,7 @@ pub fn spawn_sprite(
             texture: asset_server.load("gfx/II.png"),
             ..default()
             },
-            Fighter {},
+            //Fighter {},
         )
     );
 }
@@ -43,3 +40,30 @@ pub fn spawn_camera(mut commands: Commands, window_query: Query<&Window, With<Pr
         }
     );
 }    
+
+/*
+    Fighter Struct - Will be relocated later. Just an example
+ */
+#[derive(Component)]
+pub struct Fighter{
+    // basic info
+    name: String,
+    locked: bool,
+    
+    // bio
+    bio: String,
+    bio_image: Image,
+
+    // ending
+    ending1: String,
+    ending2: String,
+    ending1_image: Image,
+    ending2_image: Image,
+
+    // walk attributes
+    walk_vel_fwd: f32,
+    walk_vel_bwd: f32,
+    walk_ani_speed_fwd: f32,
+    walk_ani_speed_bwd: f32,
+
+}
